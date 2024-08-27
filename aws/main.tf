@@ -4,9 +4,9 @@ provider "aws" {
 }
 
 variable "app_name" {
-  type    = string
+  type = string
 }
 
 variable "pub_key" {
-    type = string
+  type = string
 }
