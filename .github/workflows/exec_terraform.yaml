@@ -36,10 +36,10 @@ jobs:
                    echo "Terraform environment variables configured"
 
             - name: Terraform Init
-              run: terraform -chdir=terraform/aws init
+              run: terraform -chdir=./aws init
         
             - name: Terraform Plan
-              run: terraform -chdir=terraform/aws plan -out=tfplan
+              run: terraform -chdir=./aws plan -out=tfplan
         
             - name: Terraform Apply
-              run: terraform -chdir=terraform/aws apply -auto-approve
+              run: terraform -chdir=./aws apply -auto-approve
