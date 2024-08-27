@@ -1,0 +1,40 @@
+name: execute terraform
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    terraform:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Terraform
+              uses: hashicorp/setup-terraform@v3
+              with:
+                terraform_version: "1.9.5"
+
+            - name: 
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
+                aws-region: ap-northeast-1
+
+            - name: Set Terraform environment variables
+              env:
+                  TF_VAR_app_name: ${{ secrets.APP_NAME }}
+                  TF_VAR_pub_key: ${{ secrets.PUB_KEY }}
+              run: |
+                   echo "Terraform environment variables configured"
+
+            - name: Terraform Init
+              run: terraform init
+        
+            - name: Terraform Plan
+              run: terraform plan -out=tfplan
+        
+            - name: Terraform Apply
+              run: terraform apply -auto-approve
