@@ -5,7 +5,7 @@ provider "aws" {
 
 variable "APP_NAME" {
   type = string
-  default = tskt
+  default = "tskt"
 }
 
 variable "PUB_KEY" {
