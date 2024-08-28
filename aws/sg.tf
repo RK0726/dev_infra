@@ -5,8 +5,8 @@ resource "aws_security_group" "web_sg" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name    = "${var.app_name}-web-sg"
-    AppName = var.app_name
+    Name    = "${var.APP_NAME}-web-sg"
+    AppName = var.APP_NAME
   }
 }
 

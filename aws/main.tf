@@ -3,10 +3,10 @@ provider "aws" {
   region  = "ap-northeast-1"
 }
 
-variable "app_name" {
+variable "APP_NAME" {
   type = string
 }
 
-variable "pub_key" {
+variable "PUB_KEY" {
   type = string
 }

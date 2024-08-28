@@ -34,7 +34,7 @@ resource "aws_iam_role_policy_attachment" "session_manager_access" {
 
 resource "aws_key_pair" "ssh_key" {
   key_name   = "ssh_key"
-  public_key = var.pub_key
+  public_key = var.PUB_KEY
 }
 
 resource "aws_instance" "ec2" {
@@ -47,7 +47,7 @@ resource "aws_instance" "ec2" {
   iam_instance_profile        = aws_iam_instance_profile.ec2_profile.id
 
   tags = {
-    Name    = "${var.app_name}-instance"
-    AppName = var.app_name
+    Name    = "${var.APP_NAME}-instance"
+    AppName = var.APP_NAME
   }
 }

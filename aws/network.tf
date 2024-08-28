@@ -8,8 +8,8 @@ resource "aws_vpc" "vpc" {
   assign_generated_ipv6_cidr_block = false
 
   tags = {
-    Name    = "${var.app_name}-vpc"
-    AppName = var.app_name
+    Name    = "${var.APP_NAME}-vpc"
+    AppName = var.APP_NAME
   }
 }
 
@@ -20,16 +20,16 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "${var.app_name}-subnet"
-    AppName = var.app_name
+    Name    = "${var.APP_NAME}-subnet"
+    AppName = var.APP_NAME
   }
 }
 
 resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name    = "${var.app_name}-route-table"
-    AppName = var.app_name
+    Name    = "${var.APP_NAME}-route-table"
+    AppName = var.APP_NAME
   }
 }
 
@@ -41,8 +41,8 @@ resource "aws_route_table_association" "public_route" {
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name    = "${var.app_name}-igw"
-    AppName = var.app_name
+    Name    = "${var.APP_NAME}-igw"
+    AppName = var.APP_NAME
   }
 }
 
