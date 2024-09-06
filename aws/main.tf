@@ -6,6 +6,6 @@ variable "APP_NAME" {
   type = string
 }
 
-variable "PUB_KEY" {
+variable "KEY_NAME" {
   type = string
 }

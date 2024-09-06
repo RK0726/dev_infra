@@ -7,7 +7,7 @@ on:
 
 env:
   TF_VAR_APP_NAME: ${{ secrets.APP_NAME }}
-  TF_VAR_PUB_KEY: ${{ secrets.PUB_KEY }}
+  TF_VAR_PUB_KEY: ${{ secrets.KEY_NAME }}
 
 jobs:
     terraform:

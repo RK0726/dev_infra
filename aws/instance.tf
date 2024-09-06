@@ -32,18 +32,13 @@ resource "aws_iam_role_policy_attachment" "session_manager_access" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
-resource "aws_key_pair" "ssh_key" {
-  key_name   = "ssh_key"
-  public_key = var.PUB_KEY
-}
-
 resource "aws_instance" "ec2" {
   ami                         = "ami-0091f05e4b8ee6709"
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public_subnet.id
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.web_sg.id]
-  key_name                    = aws_key_pair.ssh_key.key_name
+  key_name                    = var.KEY_NAME
   iam_instance_profile        = aws_iam_instance_profile.ec2_profile.id
 
   tags = {
