@@ -8,6 +8,7 @@ on:
 env:
   TF_VAR_APP_NAME: ${{ secrets.APP_NAME }}
   TF_VAR_KEY_NAME: ${{ secrets.KEY_NAME }}
+  TF_VAR_REGION: ${{ secrets.REGION }}
 
 jobs:
     terraform:

@@ -8,13 +8,10 @@ terraform {
 }
 
 provider "aws" {
-  region  = "ap-northeast-1"
-}
-
-variable "APP_NAME" {
-  type = string
-}
-
-variable "KEY_NAME" {
-  type = string
+  region  = var.REGION
+  default_tags {
+    tags = {
+      AppName = var.APP_NAME
+    }
+  }
 }
