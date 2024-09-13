@@ -37,7 +37,12 @@ jobs:
               run: terraform -chdir=./aws init
         
             - name: Terraform Plan
-              run: terraform -chdir=./aws plan
+              run: terraform -chdir=./aws plan -out=tfplan
+      
+            - name: Save Plan Result
+              run: |
+                echo "saving tfplan file"
+              id: save_plan
 
     approve:
       needs: terraform-dry-run
@@ -72,4 +77,4 @@ jobs:
               run: terraform -chdir=./aws plan
 
             - name: Terraform Apply
-              run: terraform -chdir=./aws apply -auto-approve  
+              run: terraform -chdir=./aws apply -auto-approve tfplan
