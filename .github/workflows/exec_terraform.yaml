@@ -90,6 +90,10 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                 name: tfplan
+                path: ./aws
+
+            - name: Check Plan File
+              run: ls -la ./aws
 
             - name: Terraform Apply
-              run: terraform -chdir=./aws apply -auto-approve tfplan
+              run: terraform -chdir=./aws apply -auto-approve ./aws/tfplan
