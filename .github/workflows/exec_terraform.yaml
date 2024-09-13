@@ -50,7 +50,7 @@ jobs:
               run: terraform -chdir=./aws plan -out=tfplan
         
             - name: Save Plan Result
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                 name: tfplan
                 path: ./aws/tfplan
@@ -87,7 +87,7 @@ jobs:
                 aws-region: ap-northeast-1
 
             - name: Download Plan File
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v4
               with:
                 name: tfplan
                 path: ./aws
