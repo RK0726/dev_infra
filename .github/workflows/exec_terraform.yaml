@@ -93,7 +93,7 @@ jobs:
                 path: ./aws
 
             - name: Check Plan File
-              run: ls -la ./aws
+              run: file ./aws/tfplan
 
             - name: Terraform Apply
               run: terraform -chdir=./aws apply -auto-approve ./aws/tfplan
