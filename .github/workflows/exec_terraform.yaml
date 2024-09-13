@@ -91,6 +91,9 @@ jobs:
               with:
                 name: tfplan
                 path: ./aws
+                
+            - name: Unzip Plan File
+              run: unzip ./aws/tfplan.zip -d ./aws
 
             - name: Check Plan File
               run: file ./aws/tfplan
