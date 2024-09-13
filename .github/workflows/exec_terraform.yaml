@@ -68,7 +68,7 @@ jobs:
       permissions:
         id-token: write
         contents: read
-        
+
       steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -91,4 +91,4 @@ jobs:
               run: terraform -chdir=./aws plan
 
             - name: Terraform Apply
-              run: terraform -chdir=./aws apply -auto-approve tfplan
+              run: terraform -chdir=./aws apply -auto-approve
