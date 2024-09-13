@@ -45,14 +45,15 @@ jobs:
 
             - name: Terraform Init
               run: terraform -chdir=./aws init
-        
+
             - name: Terraform Plan
               run: terraform -chdir=./aws plan -out=tfplan
-      
+        
             - name: Save Plan Result
-              run: |
-                echo "saving tfplan file"
-              id: save_plan
+              uses: actions/upload-artifact@v3
+              with:
+                name: tfplan
+                path: ./aws/tfplan
 
     approve:
       needs: terraform-dry-run
@@ -65,6 +66,7 @@ jobs:
     terraform-apply:
       needs: [ approve, terraform-dry-run ]
       runs-on: ubuntu-latest
+      if: ${{ github.event.inputs.selected_environment == 'OK' }}
       permissions:
         id-token: write
         contents: read
@@ -84,11 +86,11 @@ jobs:
                 role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
                 aws-region: ap-northeast-1
 
-            - name: Terraform Init
-              run: terraform -chdir=./aws init
-        
-            - name: Terraform Plan
-              run: terraform -chdir=./aws plan
+            - name: Download Plan File
+              uses: actions/download-artifact@v3
+              with:
+                name: tfplan
+                path: ./aws
 
             - name: Terraform Apply
-              run: terraform -chdir=./aws apply -auto-approve
+              run: terraform -chdir=./aws apply -auto-approve ./aws/tfplan
