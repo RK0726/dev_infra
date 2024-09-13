@@ -5,6 +5,15 @@ on:
         branches:
             - main
     workflow_dispatch:
+      inputs:
+        selected_environment:
+          description: 'approve'
+          required: true
+          default: '---'
+          type: choice
+          options:
+            - OK
+            - NG
 
 env:
   TF_VAR_APP_NAME: ${{ secrets.APP_NAME }}
@@ -56,6 +65,10 @@ jobs:
     terraform-apply:
       needs: [ approve, terraform-dry-run ]
       runs-on: ubuntu-latest
+      permissions:
+        id-token: write
+        contents: read
+        
       steps:
             - name: Checkout
               uses: actions/checkout@v4
