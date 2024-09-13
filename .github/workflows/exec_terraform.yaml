@@ -80,5 +80,8 @@ jobs:
                 role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
                 aws-region: ap-northeast-1
 
+            - name: Terraform Init
+              run: terraform -chdir=./aws init
+
             - name: Terraform Apply
               run: terraform -chdir=./aws apply -auto-approve
