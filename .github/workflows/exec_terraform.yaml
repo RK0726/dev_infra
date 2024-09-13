@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - main
+    workflow_dispatch:
 
 env:
   TF_VAR_APP_NAME: ${{ secrets.APP_NAME }}
