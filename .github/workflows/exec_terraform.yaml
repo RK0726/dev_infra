@@ -47,13 +47,7 @@ jobs:
               run: terraform -chdir=./aws init
 
             - name: Terraform Plan
-              run: terraform -chdir=./aws plan -out=tfplan
-        
-            - name: Save Plan Result
-              uses: actions/upload-artifact@v4
-              with:
-                name: tfplan
-                path: ./aws/tfplan
+              run: terraform -chdir=./aws plan
 
     approve:
       needs: terraform-dry-run
@@ -86,17 +80,5 @@ jobs:
                 role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
                 aws-region: ap-northeast-1
 
-            - name: Download Plan File
-              uses: actions/download-artifact@v4
-              with:
-                name: tfplan
-                path: ./aws
-                
-            - name: Unzip Plan File
-              run: unzip ./aws/tfplan.zip -d ./aws
-
-            - name: Check Plan File
-              run: file ./aws/tfplan
-
             - name: Terraform Apply
-              run: terraform -chdir=./aws apply -auto-approve ./aws/tfplan
+              run: terraform -chdir=./aws apply -auto-approve
