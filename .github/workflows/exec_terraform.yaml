@@ -58,7 +58,7 @@ jobs:
           run: echo "Please approve the apply step."
 
     terraform-apply:
-      needs: [ approve, terraform-dry-run ]
+      needs: [ approve ]
       runs-on: ubuntu-latest
       if: ${{ github.event.inputs.selected_environment == 'OK' }}
       permissions:
