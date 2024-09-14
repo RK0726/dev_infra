@@ -1,7 +1,7 @@
 resource "aws_launch_template" "web_server_template" {
   name                   = "web-server-template"
   image_id               = "ami-0091f05e4b8ee6709"
-  instance_type          = "t2.micro"
+  instance_type          = "t3a.small"
   key_name               = var.KEY_NAME
   vpc_security_group_ids = [aws_security_group.web_sg.id]
   iam_instance_profile {
