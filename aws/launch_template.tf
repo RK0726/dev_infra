@@ -3,7 +3,7 @@ resource "aws_launch_template" "web_server_template" {
   image_id             = "ami-0091f05e4b8ee6709"
   instance_type        = "t2.micro"
   key_name             = var.KEY_NAME
-  security_group_names = [aws_security_group.web_sg.name]
+  vpc_security_group_ids = [aws_security_group.web_sg.id]
   iam_instance_profile {
     name = aws_iam_instance_profile.ec2_profile.id
   }
