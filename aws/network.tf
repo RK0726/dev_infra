@@ -6,7 +6,7 @@ resource "aws_vpc" "vpc" {
   assign_generated_ipv6_cidr_block = false
 
   tags = {
-    Name    = "main-vpc"
+    Name = "main-vpc"
   }
 }
 
@@ -17,7 +17,7 @@ resource "aws_subnet" "web_public_subnet_1a" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "web-public-subnet-1a"
+    Name = "web-public-subnet-1a"
   }
 }
 
@@ -28,7 +28,7 @@ resource "aws_subnet" "web_public_subnet_1c" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "web-public-subnet-1c"
+    Name = "web-public-subnet-1c"
   }
 }
 
@@ -39,7 +39,7 @@ resource "aws_subnet" "db_private_subnet_1a" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "db-public-subnet-1a"
+    Name = "db-public-subnet-1a"
   }
 }
 
@@ -50,21 +50,21 @@ resource "aws_subnet" "db_private_subnet_1c" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name    = "db-public-subnet-1c"
+    Name = "db-public-subnet-1c"
   }
 }
 
 resource "aws_route_table" "web_public_route_table" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name    = "web-public-route-table"
+    Name = "web-public-route-table"
   }
 }
 
 resource "aws_route_table" "db_private_route_table" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name    = "db-private-route-table"
+    Name = "db-private-route-table"
   }
 }
 
@@ -91,7 +91,7 @@ resource "aws_route_table_association" "db_private_1c_route" {
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name    = "igw"
+    Name = "igw"
   }
 }
 

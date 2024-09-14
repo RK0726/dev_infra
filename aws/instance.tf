@@ -32,17 +32,17 @@ resource "aws_iam_role_policy_attachment" "session_manager_access" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
-resource "aws_instance" "ec2" {
-  ami                         = "ami-0091f05e4b8ee6709"
-  instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.web_public_subnet_1a.id
-  associate_public_ip_address = true
-  vpc_security_group_ids      = [aws_security_group.web_sg.id]
-  key_name                    = var.KEY_NAME
-  iam_instance_profile        = aws_iam_instance_profile.ec2_profile.id
+# resource "aws_instance" "ec2" {
+#   ami                         = "ami-0091f05e4b8ee6709"
+#   instance_type               = "t2.micro"
+#   subnet_id                   = aws_subnet.web_public_subnet_1a.id
+#   associate_public_ip_address = true
+#   vpc_security_group_ids      = [aws_security_group.web_sg.id]
+#   key_name                    = var.KEY_NAME
+#   iam_instance_profile        = aws_iam_instance_profile.ec2_profile.id
 
-  tags = {
-    Name    = "${var.APP_NAME}-instance"
-    AppName = var.APP_NAME
-  }
-}
+#   tags = {
+#     Name    = "${var.APP_NAME}-instance"
+#     AppName = var.APP_NAME
+#   }
+# }
